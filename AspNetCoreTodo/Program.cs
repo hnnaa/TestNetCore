@@ -15,6 +15,7 @@ namespace AspNetCoreTodo
     {
         public static void Main(string[] args)
         {
+            //test git
             CreateHostBuilder(args).Build().Run();
         }
 
