@@ -20,9 +20,11 @@ namespace AspNetCoreTodo.Controllers
         public async Task<IActionResult> Index()
         {
             var items = await _todoItemService.GetIncompleteItemsAsync();
-            var models = new TodoViewModel();
-            models.Items = new TodoItem[1] { new TodoItem { Title = "1", Id = Guid.NewGuid() } };
-            return View(models);
+            var model = new TodoViewModel()
+            {
+                Items = items
+            };
+            return View(model);
         }
     }
 }
