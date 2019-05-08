@@ -29,13 +29,26 @@ namespace AspNetCoreTodo.Services
         {
             newItem.Id = Guid.NewGuid();
             newItem.IsDone = false;
-            newItem.DueAt = DateTimeOffset.Now.AddDays(3);
 
             _context.Items.Add(newItem);
 
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
 
+        }
+
+        public async Task<bool> MarkDoneAsync(Guid guid)
+        {
+            var item = await _context.Items.Where(x => x.Id.Equals(guid)).FirstOrDefaultAsync();
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            item.IsDone = true;
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
         }
     }
 }
