@@ -22,7 +22,12 @@ namespace AspNetCoreTodo.Services
                 DueAt = DateTimeOffset.Now.AddDays(2)
             };
 
-           return Task.FromResult(new[] { item1, item2 });
+            return Task.FromResult(new[] { item1, item2 });
+        }
+
+        public async Task<bool> AddItemAsync(TodoItem newItem)
+        {
+            return false;
         }
     }
 }
